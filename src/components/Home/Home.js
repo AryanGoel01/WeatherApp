@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Home.css";
 import Button from '@mui/material/Button';
-import { TextField } from '@mui/material';
+import { Input, TextField } from '@mui/material';
 import SideNavBar from '../SideNavBar/SideNavBar';
 import SingleDay from '../SingleDay/SingleDay';
 import SixteenDays from '../SixteenDays/SixteenDays';
@@ -13,6 +13,7 @@ const Home = () => {
     const [showSixteenDays, setShowSixteenDays] = useState(false);
     const [input, setInput] = useState("Delhi");
     const [data, setData] = useState();
+
 
     const handleToday = () => {
         setShowToday(true);
@@ -74,7 +75,7 @@ const Home = () => {
                         onChange={(e) => setInput(e.target.value)}
                     />
 
-                    <Button variant="contained" color="primary" onClick={handleSearch}>
+                    <Button id="sbmtbtn" variant="contained" color="primary" onClick={handleSearch} disabled>
                         Search
                     </Button>
                 </div>
@@ -92,7 +93,8 @@ const Home = () => {
                         <Button
                             variant={showWeeklyWeather ? "contained" : "outlined"}
                             color={showWeeklyWeather ? "success" : "primary"}
-                            onClick={handleWeek}
+                            onClick={handleWeek} 
+                            id="week"
                         >
                             Week
                         </Button>
