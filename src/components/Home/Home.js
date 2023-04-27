@@ -13,6 +13,8 @@ const Home = () => {
     const [showSixteenDays, setShowSixteenDays] = useState(false);
     const [input, setInput] = useState("Delhi");
     const [data, setData] = useState();
+    const [isInputEmpty, setIsInputEmpty] = useState(true);
+
 
 
     const handleToday = () => {
@@ -57,6 +59,11 @@ const Home = () => {
         fetchData();
     };
 
+    const handleInputChange = (e) => {
+        const value = e.target.value;
+        setInput(value);
+        setIsInputEmpty(value.trim() === '');
+    }
     return (
         <div id="main">
             <div id="Side">
@@ -72,10 +79,10 @@ const Home = () => {
                         variant="outlined"
                         autoComplete="false"
                         placeholder="Enter CIty Name"
-                        onChange={(e) => setInput(e.target.value)}
+                        onChange={handleInputChange}
                     />
 
-                    <Button id="sbmtbtn" variant="contained" color="primary" onClick={handleSearch} disabled>
+                    <Button id="sbmtbtn" variant="contained" color="primary" onClick={handleSearch} disabled={isInputEmpty}>
                         Search
                     </Button>
                 </div>
@@ -96,6 +103,7 @@ const Home = () => {
                             onClick={handleWeek} 
                             id="week"
                         >
+                        
                             Week
                         </Button>
 
